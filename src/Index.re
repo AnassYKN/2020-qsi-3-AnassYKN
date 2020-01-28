@@ -45,4 +45,6 @@ ReactDOMRe.render(
   makeContainer("Fetched Dog Pictures"),
 );
 
-ReactDOMRe.render(<FetchRandomDog />, makeContainer("1 random Dog"));
+ReactDOMRe.render(
+  <FetchRandomDog />, makeContainer("1 random Dog")
+  );

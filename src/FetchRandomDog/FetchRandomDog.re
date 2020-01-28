@@ -5,6 +5,21 @@ type state =
   | ErrorFetchingDogs
   | LoadedDogs(array(string));
 
+let randomDog = (setState) => 
+    Js.Promise.(
+      fetch("https://dog.ceo/api/breeds/image/random/1")
+      |> then_(response => response##json())
+      |> then_(jsonResponse => {
+          setState(_previousState => LoadedDogs(jsonResponse##message));
+          Js.Promise.resolve();
+        })
+      |> catch(_err => {
+          setState(_previousState => ErrorFetchingDogs);
+          Js.Promise.resolve();
+        })
+      |> ignore
+    );
+
 [@react.component]
 let make = () => {
   let (state, setState) = React.useState(() => LoadingDogs);
@@ -68,6 +83,6 @@ let make = () => {
          ->React.array
        }}
     </div>
-    <button> {React.string("New dog")} </button>
+    <button onClick={_evt => randomDog(setState)}>{React.string("New dog")} </button>
   </>;
 };

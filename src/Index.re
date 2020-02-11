@@ -20,6 +20,7 @@ let makeContainer = text => {
   let content = document##createElement("div");
   content##className #= "containerContent";
 
+
   let () = container##appendChild(title);
   let () = container##appendChild(content);
   let () = document##body##appendChild(container);
@@ -27,8 +28,15 @@ let makeContainer = text => {
   content;
 };
 
-// All 4 examples.
-ReactDOMRe.render(<Greeting />, makeContainer("Atomic Greeting"));
+
+ReactDOMRe.render(<Router />,makeContainer("HomePage"));
+
+/*All 4 examples.
+
+
+ReactDOMRe.render(
+  <Greeting />, 
+  makeContainer("Atomic Greeting"));
 
 ReactDOMRe.render(
   <BlinkingGreeting> {React.string("Hello!")} </BlinkingGreeting>,
@@ -47,4 +55,5 @@ ReactDOMRe.render(
 
 ReactDOMRe.render(
   <FetchRandomDog />, makeContainer("1 random Dog")
-  );
+  ); 
+*/ 
